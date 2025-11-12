@@ -270,18 +270,25 @@
             function connectToWebSocket(code, playerName) {
                 socket.emit('joinRoom', { code, playerName });
 
+                // Listen for updates from server
                 socket.on('updatePlayers', (players) => {
                     const playersList = document.getElementById('players');
+                    const playerCountHeader = document.querySelector('#player-list h3');
+
+                    // Clear current list
                     playersList.innerHTML = '';
+
+                    // Add each player
                     players.forEach(p => {
                         const li = document.createElement('li');
                         li.textContent = p.name;
                         playersList.appendChild(li);
                     });
 
-                    // Update player count in header
-                    const playerCountHeader = document.querySelector('#player-list h3');
-                    playerCounterHeader.textContent = `Players (${data.players.length}/8)`;
+                    // Update player count
+                    if (playerCountHeader) {
+                        playerCountHeader.textContent = `Players (${players.length}/8)`;
+                    }
                 });
             }
 
