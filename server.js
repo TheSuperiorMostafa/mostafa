@@ -60,11 +60,15 @@ app.post('/api/join-room', (req, res) => {
 
 // Socket.IO connection
 io.on('connection', (socket) => {
-    console.log('A user connected:', socket.id);
-
     socket.on('joinRoom', ({ code, playerName }) => {
         if (!rooms[code]) {
             rooms[code] = { players: [] };
+        }
+
+        // Check if room is full
+        if (rooms[code].players.length >= 8) {
+            socket.emit('joinError', 'Room is full.')
+            return;
         }
 
         // Avoid duplicates
@@ -76,6 +80,9 @@ io.on('connection', (socket) => {
 
         // Broadcast updated players list to all clients in the room
         io.to(code).emit('updatePlayers', rooms[code].players);
+
+        // Confirm join to client
+        socket.emit('joinSuccess', { code, players: rooms[code].players });
     });
 
     socket.on('disconnect', () => {

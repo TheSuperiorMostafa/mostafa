@@ -363,15 +363,30 @@
 
                 if (!response.ok) return showMessage(data.error || 'Could not join room.', 'error');
 
-                lobbyGamePin.textContent = pin;
-                showPage('lobby-page');
-                showMessage('Room found!', 'success');
-
                 socket.emit('joinRoom', { code: pin, playerName: username || 'Guest' });
             } catch {
                 showMessage('An error occurred. Please try again.', 'error');
             }
+
+            socket.on('joinError', (msg) => {
+                showMessage(msg, 'error');
+            });
+
         });
+
+        // Listen for server confirmation
+        socket.on('joinSuccess', ({ code, players: serverPlayers }) => {
+            lobbyGamePin.textContent = code;
+            players = serverPlayers.map(p => p.name);
+            updatePlayerList();
+            showPage('lobby-page');
+            showMessage('Room join!', 'success');
+        });
+
+        // Listen for join errors
+        socket.on('joinError', (message) => {
+            showMessage(message, 'error');
+        })
 
         // Listen for server broadcasts of the player list
         socket.on('updatePlayers', (playerList) => {
