@@ -8,8 +8,23 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+const bcrypt = require('bcrypt');
+
+const { Pool } = require('pg');
+require('dotenv').config();
+
+const pool = new Pool({
+  host: process.env.DB_HOST || 'localhost',
+  port: process.env.DB_PORT || 5432,
+  database: process.env.DB_NAME || 'game_auth',
+  user: process.env.DB_USER || 'game_app_user',
+  password: process.env.DB_PASSWORD || 'game_app_password',
+});
+
+
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
 
 // In-memory rooms data
 const rooms = {}; // { roomCode: { players: [{id, name}] } }
@@ -85,3 +100,29 @@ const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
+
+// Register new users
+app.post('/api/register', async (req, res) => {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+        return res.status(400).json({ error: 'Username and password required' });
+    }
+
+    try {
+        // Hash the password before storing
+        const hashedPassword = await bcrypt.hash(password, 10); // 10 salt rounds
+
+        const result = await pool.query(
+            'INSERT INTO users (username, password_hash) VALUES ($1, $2) RETURNING id, username',
+            [username, hashedPassword]
+        );
+
+        res.json({ ok: true, user: result.rows[0] });
+    } catch (err) {
+        console.error('Database error on register:', err);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+
+

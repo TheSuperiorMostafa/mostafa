@@ -278,6 +278,10 @@
                         li.textContent = p.name;
                         playersList.appendChild(li);
                     });
+
+                    // Update player count in header
+                    const playerCountHeader = document.querySelector('#player-list h3');
+                    playerCounterHeader.textContent = `Players (${data.players.length}/8)`;
                 });
             }
 
