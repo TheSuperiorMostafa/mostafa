@@ -47,6 +47,8 @@ app.post('/api/create-room', (req, res) => {
 
     rooms[code] = { players: [] };
     res.json({ ok: true, code });
+
+    console.log(`Room ${code} created.`);
 });
 
 // API to join a room (optional for initial fetch)
