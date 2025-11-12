@@ -1,0 +1,17 @@
+{
+  "name": "capstone-trivia-backend",
+  "version": "1.0.0",
+  "description": "Online trivia game backend with WebSockets and a PostgreSQL users table.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "verify-db": "node verify-db.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.11.5",
+    "ws": "^8.17.0"
+  }
+}
