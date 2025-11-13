@@ -214,6 +214,7 @@
         let messageTimeout;
         let username = null;
         let players = [];
+        let currentRoomCode = null;
 
         // --- Utility Functions ---
         function showPage(pageId) {
@@ -376,11 +377,12 @@
 
         // Listen for server confirmation
         socket.on('joinSuccess', ({ code, players: serverPlayers }) => {
+            currentRoomCode = code;
             lobbyGamePin.textContent = code;
             players = serverPlayers.map(p => p.name);
             updatePlayerList();
             showPage('lobby-page');
-            showMessage('Room join!', 'success');
+            showMessage('Room joined!', 'success');
         });
 
         // Listen for join errors
@@ -396,7 +398,11 @@
 
         // Leave Lobby
         leaveLobbyBtn.addEventListener('click', () => {
-            socket.disconnect();
+            if (currentRoomCode) {
+                socket.emit('leaveRoom', currentRoomCode);
+                currentRoomCode = null;
+            }
+
             players = [];
             updatePlayerList();
             showPage('home-page');
