@@ -28,25 +28,11 @@ app.use(express.json());
 
 // Trivia Questions Database
 const questions = [
+    // Geography
     {
         question: "What is the capital of France?",
         options: ["London", "Berlin", "Paris", "Madrid"],
         correct: 2
-    },
-    {
-        question: "Which planet is known as the Red Planet?",
-        options: ["Venus", "Mars", "Jupiter", "Saturn"],
-        correct: 1
-    },
-    {
-        question: "What is 2 + 2?",
-        options: ["3", "4", "5", "6"],
-        correct: 1
-    },
-    {
-        question: "Who wrote 'Romeo and Juliet'?",
-        options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
-        correct: 1
     },
     {
         question: "What is the largest ocean on Earth?",
@@ -54,19 +40,41 @@ const questions = [
         correct: 3
     },
     {
-        question: "In which year did World War II end?",
-        options: ["1943", "1944", "1945", "1946"],
-        correct: 2
-    },
-    {
-        question: "What is the chemical symbol for gold?",
-        options: ["Go", "Gd", "Au", "Ag"],
-        correct: 2
-    },
-    {
         question: "How many continents are there?",
         options: ["5", "6", "7", "8"],
         correct: 2
+    },
+    {
+        question: "What is the longest river in the world?",
+        options: ["Amazon", "Nile", "Mississippi", "Yangtze"],
+        correct: 1
+    },
+    {
+        question: "Which country is home to the kangaroo?",
+        options: ["New Zealand", "Australia", "South Africa", "Brazil"],
+        correct: 1
+    },
+    {
+        question: "What is the smallest country in the world?",
+        options: ["Monaco", "Vatican City", "San Marino", "Liechtenstein"],
+        correct: 1
+    },
+    {
+        question: "Which mountain is the tallest in the world?",
+        options: ["K2", "Mount Everest", "Kilimanjaro", "Mount Fuji"],
+        correct: 1
+    },
+    {
+        question: "What is the capital of Japan?",
+        options: ["Seoul", "Beijing", "Tokyo", "Bangkok"],
+        correct: 2
+    },
+    
+    // Science
+    {
+        question: "Which planet is known as the Red Planet?",
+        options: ["Venus", "Mars", "Jupiter", "Saturn"],
+        correct: 1
     },
     {
         question: "What is the speed of light in vacuum (approximately)?",
@@ -74,9 +82,202 @@ const questions = [
         correct: 0
     },
     {
+        question: "What is the chemical symbol for gold?",
+        options: ["Go", "Gd", "Au", "Ag"],
+        correct: 2
+    },
+    {
+        question: "What is the most abundant gas in Earth's atmosphere?",
+        options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"],
+        correct: 2
+    },
+    {
+        question: "How many bones are in an adult human body?",
+        options: ["196", "206", "216", "226"],
+        correct: 1
+    },
+    {
+        question: "What is the hardest natural substance on Earth?",
+        options: ["Gold", "Iron", "Diamond", "Platinum"],
+        correct: 2
+    },
+    {
+        question: "Which gas do plants absorb from the atmosphere?",
+        options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"],
+        correct: 2
+    },
+    {
+        question: "What is the closest star to Earth?",
+        options: ["Proxima Centauri", "The Sun", "Sirius", "Alpha Centauri"],
+        correct: 1
+    },
+    
+    // History
+    {
+        question: "In which year did World War II end?",
+        options: ["1943", "1944", "1945", "1946"],
+        correct: 2
+    },
+    {
+        question: "Who was the first person to walk on the moon?",
+        options: ["Buzz Aldrin", "Neil Armstrong", "Michael Collins", "John Glenn"],
+        correct: 1
+    },
+    {
+        question: "In which year did the Berlin Wall fall?",
+        options: ["1987", "1989", "1991", "1993"],
+        correct: 1
+    },
+    {
+        question: "Which ancient wonder of the world was located in Alexandria?",
+        options: ["Hanging Gardens", "Colossus of Rhodes", "Lighthouse", "Great Pyramid"],
+        correct: 2
+    },
+    {
+        question: "Who painted the Mona Lisa?",
+        options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
+        correct: 2
+    },
+    
+    // Literature
+    {
+        question: "Who wrote 'Romeo and Juliet'?",
+        options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+        correct: 1
+    },
+    {
+        question: "In which book would you find the character Atticus Finch?",
+        options: ["The Great Gatsby", "To Kill a Mockingbird", "1984", "Catcher in the Rye"],
+        correct: 1
+    },
+    {
+        question: "Who wrote '1984'?",
+        options: ["George Orwell", "Aldous Huxley", "Ray Bradbury", "J.D. Salinger"],
+        correct: 0
+    },
+    
+    // Technology
+    {
         question: "Which programming language is known as the 'language of the web'?",
         options: ["Python", "Java", "JavaScript", "C++"],
         correct: 2
+    },
+    {
+        question: "What does CPU stand for?",
+        options: ["Central Processing Unit", "Computer Personal Unit", "Central Program Utility", "Computer Processing Unit"],
+        correct: 0
+    },
+    {
+        question: "What year was the first iPhone released?",
+        options: ["2005", "2006", "2007", "2008"],
+        correct: 2
+    },
+    {
+        question: "What does HTML stand for?",
+        options: ["HyperText Markup Language", "High Tech Modern Language", "Hyper Transfer Markup Language", "Home Tool Markup Language"],
+        correct: 0
+    },
+    
+    // General Knowledge
+    {
+        question: "What is 2 + 2?",
+        options: ["3", "4", "5", "6"],
+        correct: 1
+    },
+    {
+        question: "How many sides does a hexagon have?",
+        options: ["5", "6", "7", "8"],
+        correct: 1
+    },
+    {
+        question: "What is the largest mammal in the world?",
+        options: ["African Elephant", "Blue Whale", "Giraffe", "Polar Bear"],
+        correct: 1
+    },
+    {
+        question: "Which sport is played at Wimbledon?",
+        options: ["Golf", "Tennis", "Cricket", "Rugby"],
+        correct: 1
+    },
+    {
+        question: "What is the main ingredient in guacamole?",
+        options: ["Tomato", "Avocado", "Onion", "Pepper"],
+        correct: 1
+    },
+    {
+        question: "How many minutes are in an hour?",
+        options: ["50", "60", "70", "100"],
+        correct: 1
+    },
+    {
+        question: "What is the capital of Canada?",
+        options: ["Toronto", "Vancouver", "Ottawa", "Montreal"],
+        correct: 2
+    },
+    {
+        question: "Which planet is closest to the Sun?",
+        options: ["Venus", "Earth", "Mercury", "Mars"],
+        correct: 2
+    },
+    {
+        question: "What is the square root of 64?",
+        options: ["6", "7", "8", "9"],
+        correct: 2
+    },
+    {
+        question: "Which animal is known as the 'King of the Jungle'?",
+        options: ["Tiger", "Lion", "Leopard", "Cheetah"],
+        correct: 1
+    },
+    {
+        question: "What is the chemical formula for water?",
+        options: ["H2O", "CO2", "NaCl", "O2"],
+        correct: 0
+    },
+    {
+        question: "How many strings does a standard guitar have?",
+        options: ["4", "5", "6", "7"],
+        correct: 2
+    },
+    {
+        question: "What is the largest planet in our solar system?",
+        options: ["Saturn", "Jupiter", "Neptune", "Uranus"],
+        correct: 1
+    },
+    {
+        question: "Which country invented pizza?",
+        options: ["United States", "France", "Italy", "Greece"],
+        correct: 2
+    },
+    {
+        question: "What is the freezing point of water in Celsius?",
+        options: ["-10°C", "0°C", "10°C", "32°C"],
+        correct: 1
+    },
+    {
+        question: "How many chambers does a human heart have?",
+        options: ["2", "3", "4", "5"],
+        correct: 2
+    },
+    {
+        question: "What is the capital of Australia?",
+        options: ["Sydney", "Melbourne", "Canberra", "Perth"],
+        correct: 2
+    },
+    {
+        question: "Which element has the chemical symbol 'Fe'?",
+        options: ["Fluorine", "Iron", "Francium", "Fermium"],
+        correct: 1
+    },
+    {
+        question: "What is the smallest prime number?",
+        options: ["0", "1", "2", "3"],
+        correct: 2
+    },
+    {
+        question: "Which ocean is between America and Europe?",
+        options: ["Pacific", "Indian", "Arctic", "Atlantic"],
+        correct: 3
     }
 ];
 
